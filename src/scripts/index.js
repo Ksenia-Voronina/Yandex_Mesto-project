@@ -105,25 +105,7 @@ profilePopup.addEventListener("click", (evt) => {
 
 const profileFormElement = profilePopup.querySelector('.popup__form');
 
-// // Сохранение данных, введенных в окно редактирования профиля
-// function handleProfileFormSubmit(evt) {
-//   evt.preventDefault();
-//   const submitButton = profilePopup.querySelector(validationSettings.submitButtonSelector);
-//   handleLoading(submitButton, true);
-//   editProfile(nameInput.value, jobInput.value)
-//     .then((result) => {
-//       document.querySelector('.profile__title').textContent = result.name;
-//       document.querySelector('.profile__description').textContent = result.about;
-//       closeModal(profilePopup);
-//     })
-//     .catch((err) => {
-//       console.error(err);
-//       alert("Не удалось сохранить изменения. Проверьте подключение к интернету или повторите попытку позже.");
-//     })
-//     .finally(() => {
-//       handleLoading(submitButton, false);
-//     });
-// }
+// Сохранение данных, введенных в окно редактирования профиля
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -184,54 +166,6 @@ cardPopup.addEventListener("click", (evt) => {
 });
 
 const cardFormElement = cardPopup.querySelector('.popup__form');
-
-// // Добавление новой карточки
-// function handleCardFormSubmit(evt) {
-//   evt.preventDefault();
-//   const cardName = document.querySelector('.popup__input_type_card-name');
-//   const cardURL = document.querySelector('.popup__input_type_first-url');
-//   const submitButton = cardPopup.querySelector(validationSettings.submitButtonSelector);
-
-//   if (!navigator.onLine) {
-//     alert('Нет подключения к интернету. Проверьте соединение и повторите попытку.');
-//     return;
-//   }
-
-//   handleLoading(submitButton, true);
-
-//   const image = new Image();
-
-//   image.onload = () => {
-//     addNewCard(cardName.value, cardURL.value)
-//       .then((result) => {
-//         placesList.prepend(createCard(
-//           cardName.value,
-//           cardURL.value,
-//           result.likes.length,
-//           result._id,
-//           result.owner._id,
-//           result.likes.map(like => like._id)
-//         ));
-//         closeModal(cardPopup);
-//         cardFormElement.reset();
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//         alert("Не удалось добавить картинку. Проверьте подключение к интернету или повторите попытку позже.");
-//       })
-//       .finally(() => {
-//         handleLoading(submitButton, false);
-//       });
-//   };
-//   image.onerror = () => {
-//     alert('Ошибка загрузки картинки. Проверьте URL и повторите попытку.');
-//     handleLoading(submitButton, false);
-//   };
-
-//   image.src = cardURL.value;
-// }
-
-// cardFormElement.addEventListener('submit', handleCardFormSubmit);
 
 // Добавление новой карточки
 function handleCardFormSubmit(evt) {
