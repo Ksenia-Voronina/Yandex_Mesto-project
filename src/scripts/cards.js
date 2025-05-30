@@ -19,12 +19,17 @@ export function createCard(cardName, cardLink, cardLikes, cardID, ownerId, liked
   cardElement.querySelector('.card__title').textContent = cardName;
   const likedButton = cardElement.querySelector('.card__like-button');
   const deletedButton = cardElement.querySelector('.card__delete-button');
+
   //Проверка на поставленный лайк
   if (likedBy.includes(currentUserId)) {
     likedButton.classList.add('card__like-button_is-active');
   }
+
   //Поставить или убрать лайк
   likedButton.addEventListener("click", function() {
+
+    likedButton.disabled = true;
+    
     if (likedButton.classList.contains('card__like-button_is-active')) {
       deleteLikeCard(cardID)
         .then((result) => {
@@ -33,6 +38,9 @@ export function createCard(cardName, cardLink, cardLikes, cardID, ownerId, liked
         })
         .catch((err) => {
           console.log(err);
+        })
+        .finally(() => {
+          likedButton.disabled = false;
         });
     }
     else {
@@ -43,9 +51,13 @@ export function createCard(cardName, cardLink, cardLikes, cardID, ownerId, liked
         })
         .catch((err) => {
           console.log(err);
+        })
+        .finally(() => {
+          likedButton.disabled = false;
         });
       }
   });
+
   //Кнопка удаления карточки
   deletedButton.addEventListener("click", function() {
     deleteCard(cardID)
@@ -56,6 +68,7 @@ export function createCard(cardName, cardLink, cardLikes, cardID, ownerId, liked
         console.log(err);
       });
   });
+
   //Обработчик нажатия на карточку
   cardImage.addEventListener("click", function() {
     popupImageAttr.src = cardLink;
@@ -63,6 +76,7 @@ export function createCard(cardName, cardLink, cardLikes, cardID, ownerId, liked
     popupCaption.textContent = cardName;
     openModal(imagePopup);
   });
+
   //Обработчик нажатия на кнопку закрытия карточки
   closeButtonImage.addEventListener('click', () => closeModal(imagePopup));
 
